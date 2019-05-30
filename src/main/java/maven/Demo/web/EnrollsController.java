@@ -3,9 +3,9 @@
  */
 package maven.Demo.web;
 
-import maven.Demo.model.StudentDto;
-import maven.Demo.repo.Student;
-import maven.Demo.service.StudentsService;
+import maven.Demo.model.EnrollDto;
+import maven.Demo.repo.Enroll;
+import maven.Demo.service.EnrollsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/enrolls")
 @CrossOrigin(origins="*")
-public class StudentsController {
-	 @Autowired StudentsService service;
+public class EnrollsController {
+	 @Autowired EnrollsService service;
 	    @GetMapping
-	    public List<Student> getStudents() {
-	        return service.getStudents();
+	    public List<Enroll> getEnrolls() {
+	        return service.getEnrolls();
 	    }
 	    @PostMapping
-	    public void postStudents(@RequestBody StudentDto dto) {
+	    public void postEnrolls(@RequestBody EnrollDto dto) {
 	        service.add(dto);
 	    }
 	    @GetMapping("/{id}")
-	    public Student getById(@PathVariable(required = true) long id) {
-	        return service.getStudentById(id);
+	    public Enroll getById(@PathVariable(required = true) long id) {
+	        return service.getEnrollById(id);
 	    }
 	    @DeleteMapping("/{id}")
 	    public void delete(@PathVariable(required = true) long id) {
