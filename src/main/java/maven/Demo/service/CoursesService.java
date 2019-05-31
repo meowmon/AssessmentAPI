@@ -36,6 +36,21 @@ public class CoursesService {
         entity.setEnd_date(dto.getEnd_date());
         entity.setTuition(dto.getTuition());
         entity.setCredits(dto.getCredits());
+        entity.setStatus(dto.getStatus());
         return entity;
+    }
+    public void setCourseById(long id, CourseDto dto) {
+    	Optional<Course> oc = repository.findById(id);
+    	if(oc.isPresent()) {
+    		Course nc = oc.get();
+    		nc.setCredits(dto.getCredits());
+    		nc.setId(dto.getId());
+    		nc.setEnd_date(dto.getEnd_date());
+    		nc.setStart_date(dto.getStart_date());
+    		nc.setTuition(dto.getTuition());
+    		nc.setName(dto.getName());
+    		nc.setStatus(dto.getStatus());
+    		repository.save(nc);
+    	}
     }
 }

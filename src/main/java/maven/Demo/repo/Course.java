@@ -16,7 +16,14 @@ public class Course {
     private String start_date;
     private String end_date;
     private String tuition;
-    private int credits;
+    private String status;
+    public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	private int credits;
 	public long getId() {
 		return id;
 	}

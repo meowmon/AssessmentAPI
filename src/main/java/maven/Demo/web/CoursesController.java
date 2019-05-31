@@ -29,6 +29,11 @@ public class CoursesController {
 	    public void postCourses(@RequestBody CourseDto dto) {
 	        service.add(dto);
 	    }
+	    @PutMapping
+	    public void putCourses(@PathVariable(required = true) long id, @RequestBody CourseDto dto) {
+	    	service.setCourseById(id, dto);
+	    }
+	    
 	    @GetMapping("/{id}")
 	    public Course getById(@PathVariable(required = true) long id) {
 	        return service.getCourseById(id);

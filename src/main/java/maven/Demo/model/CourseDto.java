@@ -10,6 +10,13 @@ public class CourseDto {
     private String end_date;
     private String tuition;
     private int credits;
+    private String status;
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public long getId() {
 		return id;
 	}
