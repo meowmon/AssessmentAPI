@@ -5,6 +5,7 @@ package maven.Demo.web;
 
 import maven.Demo.model.EnrollDto;
 import maven.Demo.repo.Enroll;
+import maven.Demo.repo.EnrollsRepository;
 import maven.Demo.service.EnrollsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,8 @@ import java.util.List;
 @CrossOrigin(origins="*")
 public class EnrollsController {
 	 @Autowired EnrollsService service;
+	 
+	 
 	    @GetMapping
 	    public List<Enroll> getEnrolls() {
 	        return service.getEnrolls();

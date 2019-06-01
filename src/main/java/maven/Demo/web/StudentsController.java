@@ -3,18 +3,13 @@
  */
 package maven.Demo.web;
 
+import maven.Demo.model.CourseDto;
 import maven.Demo.model.StudentDto;
 import maven.Demo.repo.Student;
 import maven.Demo.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 @RestController
 @RequestMapping("/students")
@@ -32,6 +27,10 @@ public class StudentsController {
 	    @GetMapping("/{id}")
 	    public Student getById(@PathVariable(required = true) long id) {
 	        return service.getStudentById(id);
+	    }
+	    @PutMapping("/{id}")
+	    public void putCourses(@PathVariable(required = true) long id, @RequestBody StudentDto dto) {
+	    	service.setStudentById(id, dto);
 	    }
 	    @DeleteMapping("/{id}")
 	    public void delete(@PathVariable(required = true) long id) {

@@ -5,6 +5,7 @@ package maven.Demo.web;
 
 import maven.Demo.model.CourseDto;
 import maven.Demo.repo.Course;
+import maven.Demo.repo.CoursesRepository;
 import maven.Demo.service.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.List;
 @CrossOrigin(origins="*")
 public class CoursesController {
 	 @Autowired CoursesService service;
+	 @Autowired CoursesRepository repository;
 	    @GetMapping
 	    public List<Course> getCourses() {
 	        return service.getCourses();
@@ -29,9 +31,13 @@ public class CoursesController {
 	    public void postCourses(@RequestBody CourseDto dto) {
 	        service.add(dto);
 	    }
-	    @PutMapping
+	    @PutMapping("/{id}")
 	    public void putCourses(@PathVariable(required = true) long id, @RequestBody CourseDto dto) {
 	    	service.setCourseById(id, dto);
+	    }
+	    @GetMapping("/status/{status}")
+	    public List<Course> getCourseByStatus(@PathVariable(required = true) String status){
+			return repository.getCourseByStatus(status);
 	    }
 	    
 	    @GetMapping("/{id}")

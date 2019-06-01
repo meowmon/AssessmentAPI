@@ -4,6 +4,8 @@
 package maven.Demo.service;
 
 import maven.Demo.model.StudentDto;
+import maven.Demo.model.StudentDto;
+import maven.Demo.repo.Student;
 import maven.Demo.repo.Student;
 import maven.Demo.repo.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +41,18 @@ public class StudentsService {
         entity.setEmail(dto.getEmail());
         return entity;
     }
+	public void setStudentById(long id, StudentDto dto) {
+		Optional<Student> student = repository.findById(id);
+    	if(student.isPresent()) {
+    		Student newStudent = student.get();
+    		newStudent.setFirstName(dto.getFirstName());
+    		newStudent.setId(dto.getId());
+    		newStudent.setLastName(dto.getLastName());
+    		newStudent.setBday(dto.getBday());
+    		newStudent.setPhone(dto.getPhone());
+    		newStudent.setEmail(dto.getEmail());
+    		newStudent.setGender(dto.getGender());
+    		repository.save(newStudent);
+		}
+	}
 }
