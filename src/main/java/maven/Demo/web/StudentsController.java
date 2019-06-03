@@ -6,6 +6,7 @@ package maven.Demo.web;
 import maven.Demo.model.CourseDto;
 import maven.Demo.model.StudentDto;
 import maven.Demo.repo.Student;
+import maven.Demo.repo.StudentsRepository;
 import maven.Demo.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 @CrossOrigin(origins="*")
 public class StudentsController {
 	 @Autowired StudentsService service;
+	 @Autowired StudentsRepository repository;
 	    @GetMapping
 	    public List<Student> getStudents() {
 	        return service.getStudents();
@@ -34,6 +36,7 @@ public class StudentsController {
 	    }
 	    @DeleteMapping("/{id}")
 	    public void delete(@PathVariable(required = true) long id) {
+	    	repository.deleteStudentEnroll(id);
 	        service.delete(id);
 	    }
 }
